@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARSHIE 
+        
+    </title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('background.png'); /* Replace 'background.jpg' with your image file */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #envelope-container {
+            position: relative;
+        }
+
+        #envelope {
+            position: relative;
+            animation: shakeEnvelope 0.5s ease-in-out 0s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes shakeEnvelope {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25%, 75% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+        }
+
+        #love-letter {
+            display: none;
+            max-width: 1000px;
+            width: 500px;
+            padding: 20px;
+            border: 2px solid #e74c3c;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            color: #e74c3c;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            opacity: 0; /* Initially set to be invisible */
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        #open-button {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+        }
+
+        #envelope img {
+            width: 150px;
+        }
+
+        .moving-photo {
+            position: absolute;
+            width: 200px; /* Adjust the size of the photos */
+            height: 200px;
+            border-radius: 90%;
+            animation: rotateAroundEnvelope 8s linear infinite;
+            opacity: 0; /* Initially set to be invisible */
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        @keyframes rotateAroundEnvelope {
+            from {
+                transform: rotate(0deg) translateX(100px) rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg) translateX(100px) rotate(-360deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="envelope-container">
+        <audio id="audio-player" autoplay>
+            <source src="audio.mp3" type="audio/mp3"> <!-- Replace 'your-audio-file.mp3' with your audio file -->
+            Your browser does not support the audio element.
+        </audio>
+
+        <div id="envelope" onmouseover="stopShaking()" onclick="openLetter()">
+            <img src="envelope.png" alt="Envelope">
+        </div>
+
+        <div id="love-letter">
+            <h1>My Love Letter to You</h1>
+            <p>Dear [Your Loved One's Name],</p>
+            <p>I wanted to take a moment to express my deepest feelings for you. You are the sunshine that brightens my darkest days, and the reason my heart beats with joy.</p>
+            <p>Your love is a source of strength and inspiration. With you, every moment is special, and every day is an adventure.</p>
+            <p>Thank you for being my partner in this beautiful journey of life. I cherish every moment we spend together and look forward to creating many more memories with you.</p>
+            <p>With all my love,</p>
+            <p>[Your Name]</p>
+        </div>
+
+        <div class="moving-photo" style="background-image: url('envelope.png'); transform: rotate(0deg) translateX(100px) rotate(0deg);"></div>
+        <div class="moving-photo" style="background-image: url('envelope.png'); transform: rotate(45deg) translateX(100px) rotate(-45deg);"></div>
+        <!-- Add more .moving-photo elements with different image URLs as needed -->
+
+    </div>
+
+    <script>
+        function openLetter() {
+            document.getElementById("envelope").style.animation = "none"; // Stop the shaking animation
+            document.getElementById("love-letter").style.display = "block";
+            document.getElementById("audio-player").play();
+        }
+
+        function stopShaking() {
+            document.getElementById("envelope").style.animation = "none";
+        }
+    </script>
+</body>
+</html>
